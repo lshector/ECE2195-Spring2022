@@ -109,32 +109,7 @@ def runDPU(id,start,dpu,img):
                 write_index += 1
         ids=[]
 
-def main():
-    # construct the argument parser and parse the arguments
-    ap = argparse.ArgumentParser()  
-    ap.add_argument('-di', '--input_dir', type=str, default='inputs',
-        help='Path to folder for input images')
-    ap.add_argument('-do', '--output_dir', type=str, default='outputs',
-        help='Path to folder for output images')
-    ap.add_argument('-t', '--threads', type=int, default=1,
-        help='Number of threads. Default is 1')
-    ap.add_argument('-m', '--model_name', type=str, default='customcnn.xmodel',
-        help='Path of xmodel. Default is customcnn.xmodel')
-
-    # parse arguments
-    args = ap.parse_args()  
-    dir_i      = args.input_dir
-    dir_o      = args.output_dir
-    nthreads   = args.threads
-    model_name = args.model_name
-
-    # display arguments to the console
-    print('Command line options:')
-    print(' --input_dir  : ', dir_i)
-    print(' --output_dir : ', dir_o)
-    print(' --threads    : ', nthreads)
-    print(' --model      : ', model_name)
-
+def app(dir_i, model_name, nthreads, dir_o):
     # fetch names for all images
     listimage = os.listdir(dir_i)
     listimage = sorted(listimage)
@@ -194,5 +169,34 @@ def main():
         out_q[i] = cv2.cvtColor(out_q[i], cv2.COLOR_RGB2BGR)
         cv2.imwrite("{0}/{1:06d}.jpg".format(dir_o, i), out_q[i])
 
+def main():
+    # construct the argument parser and parse the arguments
+    ap = argparse.ArgumentParser()  
+    ap.add_argument('-di', '--input_dir', type=str, default='inputs',
+        help='Path to folder for input images')
+    ap.add_argument('-do', '--output_dir', type=str, default='outputs',
+        help='Path to folder for output images')
+    ap.add_argument('-t', '--threads', type=int, default=1,
+        help='Number of threads. Default is 1')
+    ap.add_argument('-m', '--model_name', type=str, default='customcnn.xmodel',
+        help='Path of xmodel. Default is customcnn.xmodel')
+
+    # parse arguments
+    args = ap.parse_args()  
+    dir_i      = args.input_dir
+    dir_o      = args.output_dir
+    nthreads   = args.threads
+    model_name = args.model_name
+
+    # display arguments to the console
+    print('Command line options:')
+    print(' --input_dir  : ', dir_i)
+    print(' --output_dir : ', dir_o)
+    print(' --threads    : ', nthreads)
+    print(' --model      : ', model_name)
+
+    # run application
+    app(dir_i, model_name, nthreads, dir_o)
+
 if __name__ == '__main__':
-  main()
+    main()
