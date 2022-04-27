@@ -1,0 +1,59 @@
+
+------------------------------------
+TensorFlow version :  2.6.0
+3.7.12 | packaged by conda-forge | (default, Oct 26 2021, 06:08:53) 
+[GCC 9.4.0]
+------------------------------------
+Command line options:
+ --float_model  :  build/float_model/f_model.h5
+ --quant_model  :  build/quant_model/q_model.h5
+ --batchsize    :  1
+ --tfrec_dir    :  build/tfrecords
+ --evaluate     :  True
+------------------------------------
+
+512 512
+[VAI INFO] Update custom_layer_type: []
+[VAI INFO] Start CrossLayerEqualization...
+ 1/10 [==>...........................] - ETA: 0s 3/10 [========>.....................] - ETA: 0s 5/10 [==============>...............] - ETA: 0s 6/10 [=================>............] - ETA: 0s 8/10 [=======================>......] - ETA: 0s10/10 [==============================] - 0s 42ms/step
+[VAI INFO] CrossLayerEqualization Done.
+[VAI INFO] Start Quantize Calibration...
+      1/Unknown - 2s 2s/step      2/Unknown - 2s 396ms/step      3/Unknown - 2s 393ms/step      4/Unknown - 3s 392ms/step      5/Unknown - 3s 392ms/step      6/Unknown - 3s 392ms/step      7/Unknown - 4s 392ms/step      8/Unknown - 4s 392ms/step      9/Unknown - 5s 392ms/step     10/Unknown - 5s 393ms/step     11/Unknown - 5s 393ms/step     12/Unknown - 6s 392ms/step     13/Unknown - 6s 392ms/step     14/Unknown - 7s 392ms/step     15/Unknown - 7s 392ms/step     16/Unknown - 7s 392ms/step     17/Unknown - 8s 392ms/step     18/Unknown - 8s 392ms/step     19/Unknown - 9s 392ms/step     20/Unknown - 9s 392ms/step     21/Unknown - 9s 392ms/step     22/Unknown - 10s 393ms/step     23/Unknown - 10s 393ms/step     24/Unknown - 11s 393ms/step     25/Unknown - 11s 393ms/step     26/Unknown - 11s 393ms/step     27/Unknown - 12s 393ms/step     28/Unknown - 12s 393ms/step     29/Unknown - 13s 393ms/step     30/Unknown - 13s 393ms/step     31/Unknown - 13s 394ms/step     32/Unknown - 14s 394ms/step     33/Unknown - 14s 393ms/step     34/Unknown - 15s 393ms/step     35/Unknown - 15s 393ms/step     36/Unknown - 15s 393ms/step     37/Unknown - 16s 393ms/step     38/Unknown - 16s 393ms/step     39/Unknown - 16s 394ms/step     40/Unknown - 17s 394ms/step     41/Unknown - 17s 394ms/step     42/Unknown - 18s 393ms/step     43/Unknown - 18s 393ms/step     44/Unknown - 18s 394ms/step     45/Unknown - 19s 394ms/step     46/Unknown - 19s 394ms/step     47/Unknown - 20s 393ms/step     48/Unknown - 20s 393ms/step     49/Unknown - 20s 393ms/step     50/Unknown - 21s 393ms/step     51/Unknown - 21s 393ms/step     52/Unknown - 22s 393ms/step     53/Unknown - 22s 393ms/step     54/Unknown - 22s 393ms/step     55/Unknown - 23s 393ms/step     56/Unknown - 23s 393ms/step     57/Unknown - 24s 393ms/step     58/Unknown - 24s 394ms/step     59/Unknown - 24s 394ms/step     60/Unknown - 25s 394ms/step     61/Unknown - 25s 394ms/step     62/Unknown - 26s 394ms/step     63/Unknown - 26s 394ms/step     64/Unknown - 26s 394ms/step     65/Unknown - 27s 394ms/step     66/Unknown - 27s 394ms/step     67/Unknown - 28s 394ms/step     68/Unknown - 28s 394ms/step     69/Unknown - 28s 394ms/step     70/Unknown - 29s 394ms/step     71/Unknown - 29s 394ms/step     72/Unknown - 30s 394ms/step     73/Unknown - 30s 394ms/step     74/Unknown - 30s 394ms/step     75/Unknown - 31s 394ms/step     76/Unknown - 31s 394ms/step     77/Unknown - 31s 394ms/step     78/Unknown - 32s 394ms/step     79/Unknown - 32s 394ms/step     80/Unknown - 33s 394ms/step     81/Unknown - 33s 394ms/step     82/Unknown - 33s 394ms/step     83/Unknown - 34s 394ms/step     84/Unknown - 34s 394ms/step     85/Unknown - 35s 394ms/step     86/Unknown - 35s 394ms/step     87/Unknown - 35s 394ms/step     88/Unknown - 36s 394ms/step     89/Unknown - 36s 394ms/step89/89 [==============================] - 36s 394ms/step
+[VAI INFO] Quantize Calibration Done.
+[VAI INFO] Start Post-Quantize Adjustment...
+[VAI INFO] Post-Quantize Adjustment Done.
+[VAI INFO] Quantization Finished.
+WARNING:tensorflow:Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+Saved quantized model to build/quant_model/q_model.h5
+
+-----------------------------------------
+Evaluating quantized model..
+-----------------------------------------
+
+Traceback (most recent call last):
+  File "quantize.py", line 127, in <module>
+    main()
+  File "quantize.py", line 123, in main
+    quant_model(args.float_model, args.quant_model, args.batchsize, args.tfrec_dir, args.evaluate)
+  File "quantize.py", line 90, in quant_model
+    verbose=0)
+  File "/opt/vitis_ai/conda/envs/vitis-ai-tensorflow2/lib/python3.7/site-packages/keras/engine/training.py", line 1501, in evaluate
+    tmp_logs = self.test_function(iterator)
+  File "/opt/vitis_ai/conda/envs/vitis-ai-tensorflow2/lib/python3.7/site-packages/tensorflow/python/eager/def_function.py", line 885, in __call__
+    result = self._call(*args, **kwds)
+  File "/opt/vitis_ai/conda/envs/vitis-ai-tensorflow2/lib/python3.7/site-packages/tensorflow/python/eager/def_function.py", line 950, in _call
+    return self._stateless_fn(*args, **kwds)
+  File "/opt/vitis_ai/conda/envs/vitis-ai-tensorflow2/lib/python3.7/site-packages/tensorflow/python/eager/function.py", line 3040, in __call__
+    filtered_flat_args, captured_inputs=graph_function.captured_inputs)  # pylint: disable=protected-access
+  File "/opt/vitis_ai/conda/envs/vitis-ai-tensorflow2/lib/python3.7/site-packages/tensorflow/python/eager/function.py", line 1964, in _call_flat
+    ctx, args, cancellation_manager=cancellation_manager))
+  File "/opt/vitis_ai/conda/envs/vitis-ai-tensorflow2/lib/python3.7/site-packages/tensorflow/python/eager/function.py", line 596, in call
+    ctx=ctx)
+  File "/opt/vitis_ai/conda/envs/vitis-ai-tensorflow2/lib/python3.7/site-packages/tensorflow/python/eager/execute.py", line 60, in quick_execute
+    inputs, attrs, num_outputs)
+tensorflow.python.framework.errors_impl.InvalidArgumentError:  logits and labels must have the same first dimension, got logits shape [63504,3] and labels shape [1]
+	 [[node sparse_categorical_crossentropy/SparseSoftmaxCrossEntropyWithLogits/SparseSoftmaxCrossEntropyWithLogits (defined at quantize.py:90) ]] [Op:__inference_test_function_13407]
+
+Function call stack:
+test_function
+
